@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="sakura">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Study Hub ✨ | Learn with Style</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Quicksand:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-primary: #fff5f7;
+            --bg-secondary: #ffe4e8;
+            --bg-card: #ffffff;
+            --text-primary: #2d1b1e;
+            --text-secondary: #6b4d52;
+            --accent: #e8919c;
+            --accent-hover: #d4707f;
+            --accent-light: #fce4e8;
+            --border: #f0d0d5;
+            --glow: rgba(232, 145, 156, 0.4);
+            --shadow: 0 4px 24px rgba(180, 120, 130, 0.15);
+            --card-shadow: 0 8px 32px rgba(180, 120, 130, 0.12);
+            --nav-bg: rgba(255, 245, 247, 0.85);
+            --gradient-1: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            --gradient-2: linear-gradient(135deg, #fce4ec, #e8eaf6);
+            --cherry-blossom: #ffb7c5;
+            --success: #66bb6a;
+            --warning: #ffa726;
+            --danger: #ef5350;
+            --info: #42a5f5;
+            --radius-sm: 8px;
+            --radius: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="tokyo"] {
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --bg-card: #1e2a3a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0b8;
+            --accent: #7b68ee;
+            --accent-hover: #6a5acd;
+            --accent-light: #2a2545;
+            --border: #2a3050;
+            --glow: rgba(123, 104, 238, 0.5);
+            --shadow: 0 4px 24px rgba(30, 20, 60, 0.4);
+            --card-shadow: 0 8px 32px rgba(20, 15, 40, 0.5);
+            --nav-bg: rgba(26, 26, 46, 0.9);
+            --gradient-1: linear-gradient(135deg, #1a1a2e, #2d1b69);
+            --gradient-2: linear-gradient(135deg, #16213e, #1a1a2e);
+            --cherry-blossom: #7b68ee;
+        }
+
+        [data-theme="cyberpunk"] {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111118;
+            --bg-card: #181820;
+            --text-primary: #e0ffe0;
+            --text-secondary: #88cc88;
+            --accent: #00ff88;
+            --accent-hover: #00cc6a;
+            --accent-light: #0a2a1a;
+            --border: #1a3a2a;
+            --glow: rgba(0, 255, 136, 0.6);
+            --shadow: 0 4px 24px rgba(0, 255, 136, 0.2);
+            --card-shadow: 0 8px 32px rgba(0, 255, 136, 0.15);
+            --nav-bg: rgba(10, 10, 10, 0.9);
+            --gradient-1: linear-gradient(135deg, #0a0a0a, #0a2a1a);
+            --gradient-2: linear-gradient(135deg, #111118, #0a1a10);
+            --cherry-blossom: #00ff88;
+        }
+
+        [data-theme="ocean"] {
+            --bg-primary: #f0f7ff;
+            --bg-secondary: #e0edf8;
+            --bg-card: #ffffff;
+            --text-primary: #1a2d3d;
+            --text-secondary: #4a6d8a;
+            --accent: #4da8da;
+            --accent-hover: #3590c0;
+            --accent-light: #e0f0fa;
+            --border: #c8ddf0;
+            --glow: rgba(77, 168, 218, 0.4);
+            --shadow: 0 4px 24px rgba(60, 130, 180, 0.12);
+            --card-shadow: 0 8px 32px rgba(60, 130, 180, 0.1);
+            --nav-bg: rgba(240, 247, 255, 0.85);
+            --gradient-1: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            --gradient-2: linear-gradient(135deg, #e8f4f8, #d0e8f5);
+            --cherry-blossom: #7ec8e3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', 'Quicksand', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background var(--transition), color var(--transition);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Cherry Blossom Particles */
+        .cherry-blossom-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+        .cherry-petal {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: var(--cherry-blossom);
+            border-radius: 50% 0 50% 0;
+            opacity: 0.7;
+            animation: fall linear infinite;
+            pointer-events: none;
+            filter: blur(0.5px);
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg) translateX(0);
+                opacity: 0.9;
+            }
+            25% {
+                transform: translateY(25vh) rotate(90deg) translateX(40px);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg) translateX(-30px);
+                opacity: 0.5;
+            }
+            75% {
+                transform: translateY(75vh) rotate(270deg) translateX(50px);
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg) translateX(-20px);
+                opacity: 0;
+            }
+        }
+
+        /* Glow Button */
+        .btn-glow {
+            position: relative;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 12px 28px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            box-shadow: 0 0 20px var(--glow);
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+        .btn-glow:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 35px var(--glow), 0 8px 25px rgba(0, 0, 0, 0.2);
+            background: var(--accent-hover);
+        }
+        .btn-glow:active {
+            transform: translateY(-1px) scale(0.97);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            box-shadow: none;
+        }
+        .btn-outline:hover {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 0 30px var(--glow);
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border);
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+            border-color: var(--accent);
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity var(--transition);
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        }
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+            transition: all var(--transition);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+        }
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        .nav-logo {
+            font-family: 'Noto Sans JP', 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-logo .logo-icon {
+            font-size: 1.8rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        @keyframes bounce {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: var(--radius);
+            transition: all var(--transition);
+            font-size: 0.9rem;
+            white-space: nowrap;
+            position: relative;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+            background: var(--accent-light);
+        }
+        .nav-links a.active {
+            font-weight: 600;
+        }
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            background: none;
+            border: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 24px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--gradient-2);
+            border-radius: 0 0 60px 60px;
+            margin-bottom: -30px;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 28px;
+        }
+        .hero-mascot {
+            font-size: 6rem;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 10px 30px var(--glow));
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .hero-mascot:hover {
+            transform: scale(1.1) rotate(-5deg);
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Section Styles */
+        .section {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 50px 24px;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 36px;
+            font-size: 1rem;
+        }
+        .grid {
+            display: grid;
+            gap: 20px;
+        }
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        /* Tags & Badges */
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            background: var(--accent-light);
+            color: var(--accent);
+            letter-spacing: 0.3px;
+        }
+        .badge-outline {
+            background: transparent;
+            border: 1.5px solid var(--accent);
+        }
+
+        /* Input Fields */
+        .input-group {
+            position: relative;
+            margin-bottom: 16px;
+        }
+        .input-group input,
+        .input-group textarea,
+        .input-group select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all var(--transition);
+            outline: none;
+        }
+        .input-group input:focus,
+        .input-group textarea:focus,
+        .input-group select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px var(--glow);
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .modal {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: color var(--transition);
+        }
+        .modal-close:hover {
+            color: var(--danger);
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 16px 24px;
+            border-radius: var(--radius);
+            box-shadow: var(--card-shadow);
+            z-index: 3000;
+            animation: slideInRight 0.4s ease;
+            font-weight: 500;
+        }
+        @keyframes slideInRight {
+            from {
+                transform: translateX(120%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Forum Post */
+        .forum-post {
+            border-left: 4px solid var(--accent);
+            padding-left: 16px;
+            margin-bottom: 16px;
+        }
+
+        /* Roadmap Progress */
+        .progress-bar {
+            height: 10px;
+            background: var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 8px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-1);
+            border-radius: 10px;
+            transition: width 0.6s ease;
+        }
+
+        /* Theme Switcher */
+        .theme-switcher {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .theme-dot {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all var(--transition);
+        }
+        .theme-dot:hover {
+            transform: scale(1.2);
+        }
+        .theme-dot.active {
+            border-color: var(--text-primary);
+            box-shadow: 0 0 12px var(--glow);
+        }
+        .theme-dot.sakura {
+            background: #f8bbd0;
+        }
+        .theme-dot.tokyo {
+            background: #7b68ee;
+        }
+        .theme-dot.cyberpunk {
+            background: #00ff88;
+        }
+        .theme-dot.ocean {
+            background: #4da8da;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                width: 100%;
+                background: var(--nav-bg);
+                flex-direction: column;
+                padding: 16px;
+                gap: 4px;
+                border-bottom: 2px solid var(--border);
+                backdrop-filter: blur(20px);
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .hero-mascot {
+                font-size: 3.5rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .grid-2,
+            .grid-3,
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .mt-2 {
+            margin-top: 16px;
+        }
+        .mt-3 {
+            margin-top: 24px;
+        }
+        .mb-2 {
+            margin-bottom: 16px;
+        }
+        .mb-3 {
+            margin-bottom: 24px;
+        }
+        .gap-2 {
+            gap: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cherry Blossom Container -->
+    <div class="cherry-blossom-container" id="cherryBlossoms"></div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo" onclick="navigateTo('home')">
+                <span class="logo-icon">🌸</span> Anime Study Hub
+            </a>
+            <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" onclick="navigateTo('home')" class="active" data-nav="home">🏠 Home</a></li>
+                <li><a href="#" onclick="navigateTo('notes')" data-nav="notes">📚 Notes</a></li>
+                <li><a href="#" onclick="navigateTo('pyq')" data-nav="pyq">📝 PYQs</a></li>
+                <li><a href="#" onclick="navigateTo('tutorials')" data-nav="tutorials">💻 Tutorials</a></li>
+                <li><a href="#" onclick="navigateTo('roadmaps')" data-nav="roadmaps">🧭 Roadmaps</a></li>
+                <li><a href="#" onclick="navigateTo('forum')" data-nav="forum">💬 Forum</a></li>
+                <li><a href="#" onclick="navigateTo('dashboard')" data-nav="dashboard" id="dashboardLink" class="hidden">📌 Dashboard</a></li>
+                <li><a href="#" onclick="openAuthModal()" id="loginBtn">🔐 Login</a></li>
+                <li>
+                    <div class="theme-switcher" style="padding:4px 8px;">
+                        <span class="theme-dot sakura active" onclick="setTheme('sakura')" title="Sakura Pink"></span>
+                        <span class="theme-dot tokyo" onclick="setTheme('tokyo')" title="Tokyo Night"></span>
+                        <span class="theme-dot cyberpunk" onclick="setTheme('cyberpunk')" title="Neon Cyberpunk"></span>
+                        <span class="theme-dot ocean" onclick="setTheme('ocean')" title="Ocean Blue"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="mainContent">
+        <!-- HOME PAGE -->
+        <div id="page-home">
+            <section class="hero">
+                <div class="hero-mascot" onclick="showMascotMessage()">🦊</div>
+                <h1>Study With Anime Spirit!</h1>
+                <p>Access notes, PYQs, coding tutorials, semester roadmaps, and connect with fellow students — all wrapped in beautiful anime aesthetics. ✨</p>
+                <button class="btn-glow" onclick="navigateTo('notes')">📚 Explore Resources</button>
+                <button class="btn-glow btn-outline" style="margin-left:12px;" onclick="navigateTo('roadmaps')">🧭 View Roadmaps</button>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">🔥 Trending Resources</h2>
+                <p class="section-subtitle">Most popular study materials this week</p>
+                <div class="grid grid-3" id="trendingGrid"></div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">✨ Why Anime Study Hub?</h2>
+                <div class="grid grid-4">
+                    <div class="card text-center">
+                        <span style="font-size:3rem;">📚</span>
+                        <h3>Organized Notes</h3>
+                        <p style="color:var(--text-secondary);">Semester-wise curated notes</p>
+                    </div>
+                    <div class="card text-center">
+                        <span style="font-size:3rem;">💻</span>
+                        <h3>Coding Tutorials</h3>
+                        <p style="color:var(--text-secondary);">C, Java, Python, Web Dev</p>
+                    </div>
+                    <div class="card text-center">
+                        <span style="font-size:3rem;">💬</span>
+                        <h3>Community Forum</h3>
+                        <p style="color:var(--text-secondary);">Discuss & solve doubts</p>
+                    </div>
+                    <div class="card text-center">
+                        <span style="font-size:3rem;">🎨</span>
+                        <h3>4 Anime Themes</h3>
+                        <p style="color:var(--text-secondary);">Sakura, Tokyo, Cyberpunk, Ocean</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- NOTES PAGE -->
+        <div id="page-notes" class="hidden">
+            <section class="section">
+                <h2 class="section-title">📚 Study Notes</h2>
+                <p class="section-subtitle">Semester-wise curated notes for all subjects</p>
+                <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:24px;">
+                    <select id="notesSemFilter" onchange="filterNotes()" class="input-group select" style="width:auto;min-width:180px;">
+                        <option value="all">All Semesters</option>
+                        <option value="1">Semester 1</option>
+                        <option value="2">Semester 2</option>
+                        <option value="3">Semester 3</option>
+                        <option value="4">Semester 4</option>
+                        <option value="5">Semester 5</option>
+                        <option value="6">Semester 6</option>
+                    </select>
+                    <input type="text" id="notesSearch" placeholder="Search notes..." oninput="filterNotes()" class="input-group input" style="width:auto;min-width:200px;">
+                    <button class="btn-glow" onclick="openUploadModal('notes')">📤 Upload Notes</button>
+                </div>
+                <div class="grid grid-3" id="notesGrid"></div>
+            </section>
+        </div>
+
+        <!-- PYQ PAGE -->
+        <div id="page-pyq" class="hidden">
+            <section class="section">
+                <h2 class="section-title">📝 Previous Year Questions</h2>
+                <p class="section-subtitle">Search and download PYQs by subject & year</p>
+                <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:24px;">
+                    <input type="text" id="pyqSearch" placeholder="Search by subject or year..." oninput="filterPYQs()" class="input-group input" style="width:auto;min-width:250px;">
+                    <button class="btn-glow" onclick="openUploadModal('pyq')">📤 Upload PYQ</button>
+                </div>
+                <div class="grid grid-3" id="pyqGrid"></div>
+            </section>
+        </div>
+
+        <!-- TUTORIALS PAGE -->
+        <div id="page-tutorials" class="hidden">
+            <section class="section">
+                <h2 class="section-title">💻 Coding Tutorials</h2>
+                <p class="section-subtitle">Learn programming with anime-themed lessons</p>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:24px;">
+                    <button class="badge badge-outline" style="cursor:pointer;" onclick="filterTutorials('all')">All</button>
+                    <button class="badge badge-outline" style="cursor:pointer;" onclick="filterTutorials('C')">C</button>
+                    <button class="badge badge-outline" style="cursor:pointer;" onclick="filterTutorials('Java')">Java</button>
+                    <button class="badge badge-outline" style="cursor:pointer;" onclick="filterTutorials('Python')">Python</button>
+                    <button class="badge badge-outline" style="cursor:pointer;" onclick="filterTutorials('Web Dev')">Web Dev</button>
+                </div>
+                <div class="grid grid-3" id="tutorialsGrid"></div>
+            </section>
+        </div>
+
+        <!-- ROADMAPS PAGE -->
+        <div id="page-roadmaps" class="hidden">
+            <section class="section">
+                <h2 class="section-title">🧭 Semester Roadmaps</h2>
+                <p class="section-subtitle">Track your progress through each semester</p>
+                <div class="grid grid-2" id="roadmapsGrid"></div>
+            </section>
+        </div>
+
+        <!-- FORUM PAGE -->
+        <div id="page-forum" class="hidden">
+            <section class="section">
+                <h2 class="section-title">💬 Discussion Forum</h2>
+                <p class="section-subtitle">Connect with fellow students</p>
+                <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:24px;">
+                    <button class="btn-glow" onclick="openNewPostModal()">➕ New Post</button>
+                    <select id="forumCategoryFilter" onchange="filterForum()" class="input-group select" style="width:auto;min-width:180px;">
+                        <option value="all">All Categories</option>
+                        <option value="Semester Help">Semester Help</option>
+                        <option value="Coding Help">Coding Help</option>
+                        <option value="Exam Discussion">Exam Discussion</option>
+                        <option value="Anime Talk">Anime Talk</option>
+                    </select>
+                </div>
+                <div id="forumPosts"></div>
+            </section>
+        </div>
+
+        <!-- DASHBOARD PAGE -->
+        <div id="page-dashboard" class="hidden">
+            <section class="section">
+                <h2 class="section-title">📌 My Dashboard</h2>
+                <p class="section-subtitle">Welcome back, <span id="dashUsername">Student</span>!</p>
+                <div class="grid grid-3">
+                    <div class="card">
+                        <h3>📚 Saved Notes</h3>
+                        <div id="savedNotesList"><p style="color:var(--text-secondary);">No saved notes yet.</p></div>
+                    </div>
+                    <div class="card">
+                        <h3>💻 Bookmarked Tutorials</h3>
+                        <div id="bookmarkedTutorials"><p style="color:var(--text-secondary);">No bookmarks yet.</p></div>
+                    </div>
+                    <div class="card">
+                        <h3>🧭 Roadmap Progress</h3>
+                        <div id="roadmapProgress"><p style="color:var(--text-secondary);">Start tracking your progress!</p></div>
+                    </div>
+                </div>
+                <button class="btn-glow mt-3" onclick="logout()" style="background:#ef5350;">🚪 Logout</button>
+            </section>
+        </div>
+    </main>
+
+    <!-- Auth Modal -->
+    <div class="modal-overlay hidden" id="authModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeAuthModal()">✕</button>
+            <h2 id="authModalTitle">🔐 Login</h2>
+            <div id="authForm">
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" id="authEmail" placeholder="student@example.com">
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="authPassword" placeholder="••••••••">
+                </div>
+                <div class="input-group hidden" id="authNameGroup">
+                    <label>Name</label>
+                    <input type="text" id="authName" placeholder="Your name">
+                </div>
+                <button class="btn-glow" onclick="handleAuth()" style="width:100%;" id="authSubmitBtn">Login</button>
+                <p class="text-center mt-2" style="font-size:0.85rem;color:var(--text-secondary);">
+                    <span id="authToggleText">Don't have an account?</span>
+                    <a href="#" onclick="toggleAuthMode()" style="color:var(--accent);font-weight:600;" id="authToggleLink">Register</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div class="modal-overlay hidden" id="uploadModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeUploadModal()">✕</button>
+            <h2 id="uploadModalTitle">📤 Upload Resource</h2>
+            <div class="input-group">
+                <label>Title</label>
+                <input type="text" id="uploadTitle" placeholder="Resource title">
+            </div>
+            <div class="input-group">
+                <label>Subject</label>
+                <input type="text" id="uploadSubject" placeholder="e.g., Mathematics, Physics">
+            </div>
+            <div class="input-group">
+                <label>Semester</label>
+                <select id="uploadSemester">
+                    <option value="1">Semester 1</option><option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option><option value="4">Semester 4</option>
+                    <option value="5">Semester 5</option><option value="6">Semester 6</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>File URL (or type description)</label>
+                <input type="text" id="uploadFileUrl" placeholder="https://... or describe the resource">
+            </div>
+            <input type="hidden" id="uploadType" value="notes">
+            <button class="btn-glow" onclick="handleUpload()" style="width:100%;">Upload</button>
+        </div>
+    </div>
+
+    <!-- New Post Modal -->
+    <div class="modal-overlay hidden" id="newPostModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeNewPostModal()">✕</button>
+            <h2>💬 New Forum Post</h2>
+            <div class="input-group"><label>Category</label>
+                <select id="newPostCategory"><option>Semester Help</option><option>Coding Help</option><option>Exam Discussion</option><option>Anime Talk</option></select></div>
+            <div class="input-group"><label>Title</label><input type="text" id="newPostTitle" placeholder="Post title"></div>
+            <div class="input-group"><label>Content</label><textarea id="newPostContent" rows="4" placeholder="Write your post..."></textarea></div>
+            <button class="btn-glow" onclick="createPost()" style="width:100%;">Publish Post</button>
+        </div>
+    </div>
+
+    <script>
+        // ==================== APP STATE ====================
+        const APP = {
+            currentUser: null,
+            currentPage: 'home',
+            theme: 'sakura',
+            notes: [
+                { id: 1, title: 'Calculus I Notes', subject: 'Mathematics', semester: 1, fileUrl: '#',
+                    description: 'Complete calculus notes with examples', downloads: 234, rating: 4.8 },
+                { id: 2, title: 'Physics Mechanics', subject: 'Physics', semester: 2, fileUrl: '#',
+                    description: 'Newtonian mechanics detailed notes', downloads: 189, rating: 4.6 },
+                { id: 3, title: 'Data Structures', subject: 'Computer Science', semester: 3, fileUrl: '#',
+                    description: 'Arrays, Linked Lists, Trees, Graphs', downloads: 312, rating: 4.9 },
+                { id: 4, title: 'Database Management', subject: 'Computer Science', semester: 4, fileUrl: '#',
+                    description: 'SQL, Normalization, Transactions', downloads: 267, rating: 4.7 },
+                { id: 5, title: 'Linear Algebra', subject: 'Mathematics', semester: 2, fileUrl: '#',
+                    description: 'Matrices, Vector Spaces, Eigenvalues', downloads: 198, rating: 4.5 },
+                { id: 6, title: 'Operating Systems', subject: 'Computer Science', semester: 5, fileUrl: '#',
+                    description: 'Process Management, Memory, File Systems', downloads: 245, rating: 4.8 },
+            ],
+            pyqs: [
+                { id: 1, title: 'Mathematics PYQ 2023', subject: 'Mathematics', year: 2023, semester: 1, fileUrl: '#',
+                    pages: 12 },
+                { id: 2, title: 'Physics PYQ 2022', subject: 'Physics', year: 2022, semester: 2, fileUrl: '#',
+                pages: 8 },
+                { id: 3, title: 'Data Structures PYQ 2023', subject: 'Computer Science', year: 2023, semester: 3,
+                    fileUrl: '#', pages: 15 },
+                { id: 4, title: 'DBMS PYQ 2022', subject: 'Computer Science', year: 2022, semester: 4, fileUrl: '#',
+                    pages: 10 },
+            ],
+            tutorials: [
+                { id: 1, title: 'C Programming Basics', category: 'C', content: 'Learn variables, loops, functions...',
+                    difficulty: 'Beginner', duration: '2 hours' },
+                { id: 2, title: 'Java OOP Concepts', category: 'Java', content: 'Classes, Objects, Inheritance...',
+                    difficulty: 'Intermediate', duration: '3 hours' },
+                { id: 3, title: 'Python for Data Science', category: 'Python',
+                    content: 'NumPy, Pandas, Matplotlib...', difficulty: 'Intermediate', duration: '4 hours' },
+                { id: 4, title: 'HTML & CSS Fundamentals', category: 'Web Dev',
+                    content: 'Semantic HTML, Flexbox, Grid...', difficulty: 'Beginner', duration: '2.5 hours' },
+                { id: 5, title: 'React.js Crash Course', category: 'Web Dev',
+                    content: 'Components, Hooks, State Management...', difficulty: 'Advanced', duration: '5 hours' },
+                { id: 6, title: 'Advanced C Programming', category: 'C',
+                    content: 'Pointers, Memory Management, File I/O...', difficulty: 'Advanced', duration: '3.5 hours' },
+            ],
+            roadmaps: [
+                { id: 1, semester: 1, subjects: ['Mathematics I', 'Physics', 'Basic Electrical', 'English'],
+                    topics: { 'Mathematics I': 12, 'Physics': 10, 'Basic Electrical': 8, 'English': 6 },
+                    completedTopics: { 'Mathematics I': 5, 'Physics': 3, 'Basic Electrical': 2, 'English': 4 } },
+                { id: 2, semester: 2, subjects: ['Mathematics II', 'Chemistry', 'Engineering Drawing', 'C Programming'],
+                    topics: { 'Mathematics II': 14, 'Chemistry': 10, 'Engineering Drawing': 8, 'C Programming': 12 },
+                    completedTopics: { 'Mathematics II': 7, 'Chemistry': 4, 'Engineering Drawing': 3, 'C Programming': 6 } },
+                { id: 3, semester: 3, subjects: ['Data Structures', 'Digital Electronics', 'Discrete Math', 'OOP'],
+                    topics: { 'Data Structures': 15, 'Digital Electronics': 10, 'Discrete Math': 12, 'OOP': 14 },
+                    completedTopics: { 'Data Structures': 10, 'Digital Electronics': 5, 'Discrete Math': 6,
+                        'OOP': 8 } },
+                { id: 4, semester: 4, subjects: ['DBMS', 'OS', 'Computer Networks', 'Software Engineering'],
+                    topics: { 'DBMS': 12, 'OS': 14, 'Computer Networks': 12, 'Software Engineering': 10 },
+                    completedTopics: { 'DBMS': 8, 'OS': 7, 'Computer Networks': 5, 'Software Engineering': 6 } },
+            ],
+            forumPosts: [
+                { id: 1, category: 'Semester Help', title: 'Best resources for Calculus?', author: 'SakuraFan',
+                    content: 'Looking for good video lectures and notes for Calculus I. Any recommendations?', likes: 15,
+                    replies: [{ author: 'CodeNinja', content: 'Try 3Blue1Brown on YouTube! Amazing visuals.' },
+                        { author: 'StudyBunny', content: 'I have some notes I can share. DM me!' }
+                    ], date: '2024-01-15' },
+                { id: 2, category: 'Coding Help', title: 'Stuck on Python recursion', author: 'PixelSamurai',
+                    content: 'I cannot wrap my head around recursive functions. Any tips?', likes: 22, replies: [
+                        { author: 'DevSenpai',
+                            content: 'Start with simple examples like factorial. Draw the call stack!' }
+                    ], date: '2024-01-18' },
+                { id: 3, category: 'Anime Talk', title: 'Best anime to watch during exams?', author: 'MangaReader',
+                    content: 'Need something light and motivating. Suggestions?', likes: 34, replies: [
+                        { author: 'KawaiiCoder', content: 'Horimiya! Short, sweet, and relaxing.' },
+                        { author: 'NightOwl', content: 'Bocchi the Rock! is super motivating for creatives.' }
+                    ], date: '2024-01-20' },
+            ],
+            savedNotes: [],
+            bookmarkedTutorials: [],
+            roadmapProgressData: {},
+        };
+
+        // ==================== INITIALIZATION ====================
+        function init() {
+            createCherryBlossoms();
+            loadFromStorage();
+            renderCurrentPage();
+            updateNavActive();
+            updateAuthUI();
+            // Periodically add new petals
+            setInterval(() => {
+                if (document.querySelectorAll('.cherry-petal').length < 30) {
+                    createCherryBlossoms();
+                }
+            }, 8000);
+        }
+
+        function loadFromStorage() {
+            const saved = localStorage.getItem('animeStudyHub');
+            if (saved) {
+                const data = JSON.parse(saved);
+                if (data.currentUser) APP.currentUser = data.currentUser;
+                if (data.theme) { APP.theme = data.theme;
+                    document.documentElement.setAttribute('data-theme', data.theme);
+                    updateThemeDots(); }
+                if (data.savedNotes) APP.savedNotes = data.savedNotes;
+                if (data.bookmarkedTutorials) APP.bookmarkedTutorials = data.bookmarkedTutorials;
+                if (data.roadmapProgressData) APP.roadmapProgressData = data.roadmapProgressData;
+            }
+        }
+
+        function saveToStorage() {
+            localStorage.setItem('animeStudyHub', JSON.stringify({
+                currentUser: APP.currentUser,
+                theme: APP.theme,
+                savedNotes: APP.savedNotes,
+                bookmarkedTutorials: APP.bookmarkedTutorials,
+                roadmapProgressData: APP.roadmapProgressData,
+            }));
+        }
+
+        // ==================== CHERRY BLOSSOMS ====================
+        function createCherryBlossoms() {
+            const container = document.getElementById('cherryBlossoms');
+            const colors = ['#ffb7c5', '#ffccd5', '#ffe0e6', '#ffc2d1', '#f8bbd0', '#fce4ec'];
+            for (let i = 0; i < 8; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'cherry-petal';
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.animationDuration = (Math.random() * 8 + 6) + 's';
+                petal.style.animationDelay = Math.random() * 5 + 's';
+                petal.style.width = (Math.random() * 14 + 10) + 'px';
+                petal.style.height = (Math.random() * 14 + 10) + 'px';
+                petal.style.background = colors[Math.floor(Math.random() * colors.length)];
+                petal.style.opacity = Math.random() * 0.5 + 0.4;
+                container.appendChild(petal);
+                // Remove after animation
+                setTimeout(() => {
+                    if (petal.parentNode) petal.parentNode.removeChild(petal);
+                }, parseFloat(petal.style.animationDuration) * 1000 + 2000);
+            }
+        }
+
+        // ==================== NAVIGATION ====================
+        function navigateTo(page) {
+            APP.currentPage = page;
+            renderCurrentPage();
+            updateNavActive();
+            document.getElementById('navLinks').classList.remove('open');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderCurrentPage() {
+            const pages = ['home', 'notes', 'pyq', 'tutorials', 'roadmaps', 'forum', 'dashboard'];
+            pages.forEach(p => {
+                const el = document.getElementById('page-' + p);
+                if (el) el.classList.add('hidden');
+            });
+            const currentEl = document.getElementById('page-' + APP.currentPage);
+            if (currentEl) currentEl.classList.remove('hidden');
+
+            // Render page-specific content
+            switch (APP.currentPage) {
+                case 'home':
+                    renderTrending();
+                    break;
+                case 'notes':
+                    renderNotes();
+                    break;
+                case 'pyq':
+                    renderPYQs();
+                    break;
+                case 'tutorials':
+                    renderTutorials();
+                    break;
+                case 'roadmaps':
+                    renderRoadmaps();
+                    break;
+                case 'forum':
+                    renderForum();
+                    break;
+                case 'dashboard':
+                    renderDashboard();
+                    break;
+            }
+        }
+
+        function updateNavActive() {
+            document.querySelectorAll('.nav-links a[data-nav]').forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('data-nav') === APP.currentPage) a.classList.add('active');
+            });
+        }
+
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('open');
+        }
+
+        // ==================== THEME SYSTEM ====================
+        function setTheme(theme) {
+            APP.theme = theme;
+            document.documentElement.setAttribute('data-theme', theme);
+            updateThemeDots();
+            saveToStorage();
+            showToast(`✨ Theme switched to ${theme.charAt(0).toUpperCase() + theme.slice(1)}!`);
+        }
+
+        function updateThemeDots() {
+            document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'));
+            const activeDot = document.querySelector('.theme-dot.' + APP.theme);
+            if (activeDot) activeDot.classList.add('active');
+        }
+
+        // ==================== AUTHENTICATION ====================
+        let authMode = 'login';
+
+        function openAuthModal() {
+            document.getElementById('authModal').classList.remove('hidden');
+            authMode = 'login';
+            updateAuthModalUI();
+        }
+
+        function closeAuthModal() {
+            document.getElementById('authModal').classList.add('hidden');
+        }
+
+        function toggleAuthMode() {
+            authMode = authMode === 'login' ? 'register' : 'login';
+            updateAuthModalUI();
+        }
+
+        function updateAuthModalUI() {
+            const title = document.getElementById('authModalTitle');
+            const submitBtn = document.getElementById('authSubmitBtn');
+            const nameGroup = document.getElementById('authNameGroup');
+            const toggleText = document.getElementById('authToggleText');
+            const toggleLink = document.getElementById('authToggleLink');
+            if (authMode === 'login') {
+                title.textContent = '🔐 Login';
+                submitBtn.textContent = 'Login';
+                nameGroup.classList.add('hidden');
+                toggleText.textContent = "Don't have an account?";
+                toggleLink.textContent = 'Register';
+            } else {
+                title.textContent = '✨ Register';
+                submitBtn.textContent = 'Create Account';
+                nameGroup.classList.remove('hidden');
+                toggleText.textContent = 'Already have an account?';
+                toggleLink.textContent = 'Login';
+            }
+        }
+
+        function handleAuth() {
+            const email = document.getElementById('authEmail').value.trim();
+            const password = document.getElementById('authPassword').value.trim();
+            const name = document.getElementById('authName').value.trim();
+            if (!email || !password) { showToast('⚠️ Please fill all fields'); return; }
+            if (authMode === 'register' && !name) { showToast('⚠️ Please enter your name'); return; }
+            // Simulate authentication
+            APP.currentUser = {
+                email,
+                name: authMode === 'register' ? name : email.split('@')[0],
+                role: 'student',
+                joined: new Date().toISOString(),
+            };
+            saveToStorage();
+            updateAuthUI();
+            closeAuthModal();
+            showToast(`🎉 Welcome, ${APP.currentUser.name}!`);
+            document.getElementById('authEmail').value = '';
+            document.getElementById('authPassword').value = '';
+            document.getElementById('authName').value = '';
+        }
+
+        function logout() {
+            APP.currentUser = null;
+            APP.savedNotes = [];
+            APP.bookmarkedTutorials = [];
+            APP.roadmapProgressData = {};
+            saveToStorage();
+            updateAuthUI();
+            navigateTo('home');
+            showToast('👋 Logged out successfully');
+        }
+
+        function updateAuthUI() {
+            const loginBtn = document.getElementById('loginBtn');
+            const dashboardLink = document.getElementById('dashboardLink');
+            if (APP.currentUser) {
+                loginBtn.textContent = '👤 ' + APP.currentUser.name;
+                loginBtn.setAttribute('onclick', 'navigateTo("dashboard")');
+                dashboardLink.classList.remove('hidden');
+            } else {
+                loginBtn.textContent = '🔐 Login';
+                loginBtn.setAttribute('onclick', 'openAuthModal()');
+                dashboardLink.classList.add('hidden');
+            }
+        }
+
+        // ==================== TOAST ====================
+        function showToast(message) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.animation = 'slideInRight 0.4s ease reverse';
+                setTimeout(() => toast.remove(), 400);
+            }, 2500);
+        }
+
+        // ==================== MASCOT ====================
+        function showMascotMessage() {
+            const messages = [
+                'Ganbatte! 📚✨',
+                'You can do it! 💪',
+                'Study hard, dream big! 🌟',
+                'Believe in yourself! 🦊',
+                'Every expert was once a beginner! 💫',
+            ];
+            showToast(messages[Math.floor(Math.random() * messages.length)]);
+        }
+
+        // ==================== RENDER FUNCTIONS ====================
+        function renderTrending() {
+            const grid = document.getElementById('trendingGrid');
+            const trending = [...APP.notes].sort((a, b) => b.downloads - a.downloads).slice(0, 6);
+            grid.innerHTML = trending.map(n => `
+            <div class="card">
+              <span class="badge">Sem ${n.semester}</span>
+              <h3 style="margin-top:8px;">${n.title}</h3>
+              <p style="color:var(--text-secondary);font-size:0.9rem;">${n.subject}</p>
+              <p style="font-size:0.85rem;">${n.description}</p>
+              <div style="display:flex;gap:12px;align-items:center;margin-top:8px;">
+                <span>⭐ ${n.rating}</span>
+                <span>📥 ${n.downloads}</span>
+              </div>
+              <button class="btn-glow" style="margin-top:12px;width:100%;font-size:0.85rem;" onclick="navigateTo('notes')">View Notes</button>
+            </div>
+          `).join('');
+        }
+
+        function renderNotes(filteredNotes = null) {
+            const grid = document.getElementById('notesGrid');
+            const notes = filteredNotes || APP.notes;
+            grid.innerHTML = notes.map(n => `
+            <div class="card">
+              <span class="badge">Sem ${n.semester}</span>
+              <h3 style="margin-top:8px;">${n.title}</h3>
+              <p style="color:var(--text-secondary);">${n.subject}</p>
+              <p style="font-size:0.85rem;">${n.description}</p>
+              <div style="display:flex;gap:12px;margin-top:8px;">
+                <span>⭐ ${n.rating}</span>
+                <span>📥 ${n.downloads}</span>
+              </div>
+              <div style="display:flex;gap:8px;margin-top:12px;">
+                <button class="btn-glow" style="flex:1;font-size:0.8rem;" onclick="downloadResource('notes', ${n.id})">📥 Download</button>
+                <button class="btn-glow btn-outline" style="font-size:0.8rem;" onclick="saveNote(${n.id})">💾 Save</button>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        function filterNotes() {
+            const sem = document.getElementById('notesSemFilter').value;
+            const search = document.getElementById('notesSearch').value.toLowerCase();
+            let filtered = APP.notes;
+            if (sem !== 'all') filtered = filtered.filter(n => n.semester === parseInt(sem));
+            if (search) filtered = filtered.filter(n => n.title.toLowerCase().includes(search) || n.subject.toLowerCase()
+                .includes(search));
+            renderNotes(filtered);
+        }
+
+        function renderPYQs(filteredPYQs = null) {
+            const grid = document.getElementById('pyqGrid');
+            const pyqs = filteredPYQs || APP.pyqs;
+            grid.innerHTML = pyqs.map(p => `
+            <div class="card">
+              <span class="badge">${p.year}</span>
+              <span class="badge badge-outline">Sem ${p.semester}</span>
+              <h3 style="margin-top:8px;">${p.title}</h3>
+              <p style="color:var(--text-secondary);">${p.subject} | 📄 ${p.pages} pages</p>
+              <button class="btn-glow" style="margin-top:12px;width:100%;" onclick="downloadResource('pyq', ${p.id})">📥 Download PYQ</button>
+            </div>
+          `).join('');
+        }
+
+        function filterPYQs() {
+            const search = document.getElementById('pyqSearch').value.toLowerCase();
+            let filtered = APP.pyqs;
+            if (search) filtered = filtered.filter(p => p.title.toLowerCase().includes(search) || p.subject.toLowerCase()
+                .includes(search) || p.year.toString().includes(search));
+            renderPYQs(filtered);
+        }
+
+        function renderTutorials(category = 'all') {
+            const grid = document.getElementById('tutorialsGrid');
+            let tuts = APP.tutorials;
+            if (category !== 'all') tuts = tuts.filter(t => t.category === category);
+            grid.innerHTML = tuts.map(t => `
+            <div class="card">
+              <span class="badge">${t.category}</span>
+              <span class="badge badge-outline">${t.difficulty}</span>
+              <h3 style="margin-top:8px;">${t.title}</h3>
+              <p style="font-size:0.85rem;color:var(--text-secondary);">${t.content}</p>
+              <p>⏱ ${t.duration}</p>
+              <div style="display:flex;gap:8px;margin-top:12px;">
+                <button class="btn-glow" style="flex:1;font-size:0.8rem;" onclick="startTutorial(${t.id})">▶ Start</button>
+                <button class="btn-glow btn-outline" style="font-size:0.8rem;" onclick="bookmarkTutorial(${t.id})">🔖</button>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        function filterTutorials(cat) {
+            renderTutorials(cat);
+        }
+
+        function renderRoadmaps() {
+            const grid = document.getElementById('roadmapsGrid');
+            grid.innerHTML = APP.roadmaps.map(r => {
+                const totalTopics = Object.values(r.topics).reduce((a, b) => a + b, 0);
+                const completedTotal = Object.values(r.completedTopics).reduce((a, b) => a + b, 0);
+                const progressPercent = Math.round((completedTotal / totalTopics) * 100);
+                return `
+              <div class="card">
+                <h3>📅 Semester ${r.semester}</h3>
+                <div class="progress-bar"><div class="progress-fill" style="width:${progressPercent}%;"></div></div>
+                <p style="font-size:0.85rem;">${progressPercent}% Complete (${completedTotal}/${totalTopics} topics)</p>
+                <div style="margin-top:8px;">
+                  ${r.subjects.map(s => {
+                    const subTotal = r.topics[s] || 1;
+                    const subDone = r.completedTopics[s] || 0;
+                    const subPercent = Math.round((subDone / subTotal) * 100);
+                    return `<p style="font-size:0.8rem;">📖 ${s}: ${subDone}/${subTotal} <span style="color:var(--accent);">(${subPercent}%)</span></p>`;
+                  }).join('')}
+                </div>
+                <button class="btn-glow" style="margin-top:12px;width:100%;font-size:0.85rem;" onclick="markRoadmapProgress(${r.id})">✅ Mark Progress</button>
+              </div>
+            `;
+            }).join('');
+        }
+
+        function renderForum(filteredPosts = null) {
+            const container = document.getElementById('forumPosts');
+            const posts = filteredPosts || APP.forumPosts;
+            container.innerHTML = posts.map(p => `
+            <div class="card forum-post" style="margin-bottom:16px;">
+              <span class="badge">${p.category}</span>
+              <h3>${p.title}</h3>
+              <p style="font-size:0.8rem;color:var(--text-secondary);">By ${p.author} • ${p.date}</p>
+              <p>${p.content}</p>
+              <div style="display:flex;gap:16px;margin-top:8px;">
+                <span>❤️ ${p.likes} likes</span>
+                <span>💬 ${p.replies.length} replies</span>
+              </div>
+              <div style="margin-top:8px;padding-left:16px;border-left:2px solid var(--border);">
+                ${p.replies.map(r => `<p style="font-size:0.8rem;"><strong>${r.author}:</strong> ${r.content}</p>`).join('')}
+              </div>
+              <button class="btn-glow btn-outline" style="margin-top:8px;font-size:0.8rem;" onclick="likePost(${p.id})">❤️ Like</button>
+            </div>
+          `).join('');
+        }
+
+        function filterForum() {
+            const cat = document.getElementById('forumCategoryFilter').value;
+            let filtered = APP.forumPosts;
+            if (cat !== 'all') filtered = filtered.filter(p => p.category === cat);
+            renderForum(filtered);
+        }
+
+        function renderDashboard() {
+            if (!APP.currentUser) { navigateTo('home'); return; }
+            document.getElementById('dashUsername').textContent = APP.currentUser.name;
+            // Saved notes
+            const savedNotesList = document.getElementById('savedNotesList');
+            if (APP.savedNotes.length === 0) {
+                savedNotesList.innerHTML = '<p style="color:var(--text-secondary);">No saved notes yet.</p>';
+            } else {
+                savedNotesList.innerHTML = APP.savedNotes.map(id => {
+                    const note = APP.notes.find(n => n.id === id);
+                    return note ? `<p>📚 ${note.title} <button onclick="removeSavedNote(${id})" style="background:none;border:none;cursor:pointer;color:var(--danger);">✕</button></p>` : '';
+                }).join('');
+            }
+            // Bookmarked tutorials
+            const bookmarkedEl = document.getElementById('bookmarkedTutorials');
+            if (APP.bookmarkedTutorials.length === 0) {
+                bookmarkedEl.innerHTML = '<p style="color:var(--text-secondary);">No bookmarks yet.</p>';
+            } else {
+                bookmarkedEl.innerHTML = APP.bookmarkedTutorials.map(id => {
+                    const tut = APP.tutorials.find(t => t.id === id);
+                    return tut ? `<p>💻 ${tut.title}</p>` : '';
+                }).join('');
+            }
+            // Roadmap progress
+            const progressEl = document.getElementById('roadmapProgress');
+            progressEl.innerHTML = '<p style="color:var(--text-secondary);">Check the Roadmaps page to track progress!</p>';
+        }
+
+        // ==================== ACTIONS ====================
+        function downloadResource(type, id) {
+            const source = type === 'notes' ? APP.notes : APP.pyqs;
+            const item = source.find(i => i.id === id);
+            if (item) {
+                showToast(`📥 Downloading: ${item.title}`);
+                // Simulate download
+                if (item.fileUrl && item.fileUrl !== '#') window.open(item.fileUrl, '_blank');
+            }
+        }
+
+        function saveNote(id) {
+            if (!APP.currentUser) { showToast('⚠️ Please login first!');
+                openAuthModal(); return; }
+            if (APP.savedNotes.includes(id)) {
+                APP.savedNotes = APP.savedNotes.filter(n => n !== id);
+                showToast('💾 Note removed from saved');
+            } else {
+                APP.savedNotes.push(id);
+                showToast('💾 Note saved to dashboard!');
+            }
+            saveToStorage();
+            if (APP.currentPage === 'dashboard') renderDashboard();
+        }
+
+        function removeSavedNote(id) {
+            APP.savedNotes = APP.savedNotes.filter(n => n !== id);
+            saveToStorage();
+            renderDashboard();
+            showToast('🗑 Note removed');
+        }
+
+        function bookmarkTutorial(id) {
+            if (!APP.currentUser) { showToast('⚠️ Please login first!');
+                openAuthModal(); return; }
+            if (APP.bookmarkedTutorials.includes(id)) {
+                APP.bookmarkedTutorials = APP.bookmarkedTutorials.filter(t => t !== id);
+                showToast('🔖 Bookmark removed');
+            } else {
+                APP.bookmarkedTutorials.push(id);
+                showToast('🔖 Tutorial bookmarked!');
+            }
+            saveToStorage();
+            if (APP.currentPage === 'dashboard') renderDashboard();
+        }
+
+        function startTutorial(id) {
+            const tut = APP.tutorials.find(t => t.id === id);
+            if (tut) showToast(`▶ Starting: ${tut.title} — ${tut.duration}`);
+        }
+
+        function likePost(id) {
+            const post = APP.forumPosts.find(p => p.id === id);
+            if (post) { post.likes++;
+                renderForum();
+                showToast('❤️ Post liked!'); }
+        }
+
+        function markRoadmapProgress(id) {
+            if (!APP.currentUser) { showToast('⚠️ Please login first!');
+                openAuthModal(); return; }
+            const roadmap = APP.roadmaps.find(r => r.id === id);
+            if (roadmap) {
+                const subj = roadmap.subjects[Math.floor(Math.random() * roadmap.subjects.length)];
+                const total = roadmap.topics[subj] || 1;
+                const current = roadmap.completedTopics[subj] || 0;
+                if (current < total) {
+                    roadmap.completedTopics[subj] = current + 1;
+                    APP.roadmapProgressData[id] = roadmap.completedTopics;
+                    saveToStorage();
+                    renderRoadmaps();
+                    showToast(`✅ Progress in ${subj}: ${current + 1}/${total} topics done!`);
+                } else {
+                    showToast('🎉 All topics in this subject are complete!');
+                }
+            }
+        }
+
+        function openUploadModal(type) {
+            if (!APP.currentUser) { showToast('⚠️ Please login to upload!');
+                openAuthModal(); return; }
+            document.getElementById('uploadType').value = type;
+            document.getElementById('uploadModalTitle').textContent = type === 'notes' ? '📤 Upload Notes' :
+                '📤 Upload PYQ';
+            document.getElementById('uploadModal').classList.remove('hidden');
+        }
+
+        function closeUploadModal() {
+            document.getElementById('uploadModal').classList.add('hidden');
+            document.getElementById('uploadTitle').value = '';
+            document.getElementById('uploadSubject').value = '';
+            document.getElementById('uploadFileUrl').value = '';
+        }
+
+        function handleUpload() {
+            const type = document.getElementById('uploadType').value;
+            const title = document.getElementById('uploadTitle').value.trim();
+            const subject = document.getElementById('uploadSubject').value.trim();
+            const semester = parseInt(document.getElementById('uploadSemester').value);
+            const fileUrl = document.getElementById('uploadFileUrl').value.trim();
+            if (!title || !subject) { showToast('⚠️ Please fill all fields'); return; }
+            const newItem = {
+                id: Date.now(),
+                title,
+                subject,
+                semester,
+                fileUrl: fileUrl || '#',
+                description: `Uploaded ${type}`,
+                downloads: 0,
+                rating: 5.0,
+                year: new Date().getFullYear(),
+                pages: Math.floor(Math.random() * 20) + 5,
+            };
+            if (type === 'notes') {
+                APP.notes.unshift(newItem);
+                renderNotes();
+            } else {
+                APP.pyqs.unshift(newItem);
+                renderPYQs();
+            }
+            closeUploadModal();
+            showToast(`✅ ${type === 'notes' ? 'Notes' : 'PYQ'} uploaded successfully!`);
+        }
+
+        function openNewPostModal() {
+            if (!APP.currentUser) { showToast('⚠️ Please login to post!');
+                openAuthModal(); return; }
+            document.getElementById('newPostModal').classList.remove('hidden');
+        }
+
+        function closeNewPostModal() {
+            document.getElementById('newPostModal').classList.add('hidden');
+            document.getElementById('newPostTitle').value = '';
+            document.getElementById('newPostContent').value = '';
+        }
+
+        function createPost() {
+            const category = document.getElementById('newPostCategory').value;
+            const title = document.getElementById('newPostTitle').value.trim();
+            const content = document.getElementById('newPostContent').value.trim();
+            if (!title || !content) { showToast('⚠️ Please fill all fields'); return; }
+            APP.forumPosts.unshift({
+                id: Date.now(),
+                category,
+                title,
+                author: APP.currentUser.name,
+                content,
+                likes: 0,
+                replies: [],
+                date: new Date().toISOString().split('T')[0],
+            });
+            renderForum();
+            closeNewPostModal();
+            showToast('💬 Post published!');
+        }
+
+        // ==================== MODAL CLOSE ON OVERLAY CLICK ====================
+        document.addEventListener('click', function(e) {
+            if (e.target.id === 'authModal') closeAuthModal();
+            if (e.target.id === 'uploadModal') closeUploadModal();
+            if (e.target.id === 'newPostModal') closeNewPostModal();
+        });
+
+        // ==================== KEYBOARD SHORTCUTS ====================
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeAuthModal();
+                closeUploadModal();
+                closeNewPostModal();
+            }
+        });
+
+        // ==================== INIT ====================
+        init();
+        console.log('🌸 Anime Study Hub initialized!');
+        console.log('✨ Features: Notes, PYQs, Tutorials, Roadmaps, Forum, 4 Themes, Auth, Dashboard');
+        console.log('🦊 Try navigating through the menu or clicking the mascot!');
+        console.log('🎨 Use the theme dots in the navbar to switch themes.');
+    </script>
+</body>
+</html>
